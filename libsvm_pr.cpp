@@ -22,7 +22,7 @@ int main()
     const char *error_msg;
 
     param.svm_type = C_SVC;
-    param.kernel_type = RBF;
+    param.kernel_type = 0;
     param.degree = 3;
     param.gamma = 0.5;
     param.coef0 = 0;
@@ -122,14 +122,14 @@ int main()
     svm_node* testnode = Malloc(svm_node,3);
 	double test[3][2];
 
-	test[0][0] = 0.177;
-	test[0][1] = 0.1989;
+	test[0][0] = 0.333;
+	test[0][1] = 0.435;
 
-	test[1][0] = -0.89;
-	test[1][1] = 0.45;
+	test[1][0] = -0.9;
+	test[1][1] = 0.01;
 
-	test[2][0] = 0.156;
-	test[2][1] = -0.568;
+	test[2][0] = 0.155;
+	test[2][1] = -0.8;
 
 	double prob_estimates[3];
 	for (int dongu = 0; dongu<3; dongu++){    
@@ -145,7 +145,12 @@ int main()
 //		std::cout << "***" << testnode[0].value << " " <<testnode[1].value << endl; 
 
 	float retval = svm_predict_probability(model,testnode,prob_estimates);
+	
     printf("retval: %f\n",retval);
+
+	cout<<"***"<<endl<<prob_estimates[0]<<" "<<prob_estimates[1]<<" "<<prob_estimates[2]<<endl;
+
+
 	    }
 
 
